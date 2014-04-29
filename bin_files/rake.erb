@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+app_path=$(cd $(dirname $0)/.. && pwd -P)
+
+export BUNDLE_GEMFILE="$app_path/Gemfile"
+
+$app_path/bin/ruby -r rubygems -r bundler/setup -e "load Gem.bin_path('rake', 'rake')" $@

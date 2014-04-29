@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-bundler_version="1.1.0"
-rspec_version="2.6.0"
+bundler_version="1.6.0"
 
 source "$HOME/.rvm/scripts/rvm"
 
@@ -18,14 +17,7 @@ function switch_ruby() {
 function install_bundler_if_needed() {
   echo "Checking for Bundler $bundler_version..."
   if ! gem list --installed bundler --version "$bundler_version" > /dev/null; then
-    gem install bundler --version "$bundler_version" --source http://mirrors.squareup.com/rubygems
-  fi
-}
-
-function install_rspec_if_needed() {
-  echo "Checking for rspec $rspec_version..."
-  if ! gem list --installed rspec --version "$rspec_version" > /dev/null; then
-    gem install rspec --version "$rspec_version" --source http://mirrors.squareup.com/rubygems
+    gem install bundler --version "$bundler_version"
   fi
 }
 
@@ -42,7 +34,6 @@ function run_tests() {
 function prepare_and_run() {
   switch_ruby $1 &&
   install_bundler_if_needed &&
-  install_rspec_if_needed &&
   update_gems_if_needed &&
   run_tests
 }
@@ -52,5 +43,5 @@ function mark_latest_green_build() {
   git push -f origin HEAD:latest-green-build
 }
 
-prepare_and_run "1.9.3-p0" &&
+prepare_and_run "1.9.3" &&
 mark_latest_green_build
