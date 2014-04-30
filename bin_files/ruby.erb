@@ -2,12 +2,7 @@
 
 cd $(dirname $0)/..
 
-# Avoid pollution of Ruby $LOAD_PATH, etc from existing environment
 export RUBY=bin/ruby # This is needed to prevent rake from exploding
 export BUNDLE_GEMFILE="Gemfile"
-export RUBYLIB=""
-export GEM_HOME=""
-export GEM_PATH=""
-export BUNDLE_BIN_PATH=""
 
 <%=@java_dash_jar%> <%=@jruby_jar_file%> <%=@jruby_opts%> "$@"
