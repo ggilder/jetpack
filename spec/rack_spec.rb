@@ -26,7 +26,7 @@ describe "jetpack - web start for rack app" do
   end
 
   def run_app(app)
-    jetty_pid = Process.spawn('env', '-i', 'RAILS_ENV=development', 'java', '-jar', 'start.jar', {:chdir => "#{app}/vendor/jetty"})
+    jetty_pid = Process.spawn({'RAILS_ENV' => 'development'}, 'java', '-jar', 'start.jar', {:chdir => "#{app}/vendor/jetty"})
     start_time = Time.now
     loop do
       begin

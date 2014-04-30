@@ -44,7 +44,7 @@ describe "jetpack - filters" do
   end
 
   def run_app
-    jetty_pid = Process.spawn('env', '-i', 'RAILS_ENV=development', 'java', '-jar', 'start.jar', {:chdir => "spec/sample_projects/webapp_filters/vendor/jetty"})
+    jetty_pid = Process.spawn({'RAILS_ENV' => 'development'}, 'java', '-jar', 'start.jar', {:chdir => "spec/sample_projects/webapp_filters/vendor/jetty"})
     start_time = Time.now
     loop do
       begin
